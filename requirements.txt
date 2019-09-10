@@ -1,0 +1,4 @@
+Python>3.7
+Django>=2.1
+Mysql>=5.7
+Bootstrab4
