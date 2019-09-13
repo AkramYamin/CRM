@@ -1,8 +1,30 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.auth.models import User
 
 # Create your models here.
+
+
+class Speed(models.Model):
+    speed = models.SmallIntegerField()
+
+    def __str__(self):
+        return str(self.speed)
+
+
+class Period(models.Model):
+    period = models.SmallIntegerField()
+    description = models.TextField()
+
+    def __str__(self):
+        return self.description
+
+
+class Status(models.Model):
+    name = models.CharField(max_length=60)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
 
 
 class Service(models.Model):
@@ -11,32 +33,48 @@ class Service(models.Model):
     price = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateField(auto_now=True)
+    is_active = models.BooleanField(default=True)
+    speed = models.ForeignKey(Speed, on_delete=models.CASCADE)
+    period = models.ForeignKey(Period, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
 
 class Employee(models.Model):
-    user = models.OneToOneField(User, on_delete=models.PROTECT)
+    username = models.CharField(max_length=250)
+    password = models.CharField(max_length=500)
+    first_name = models.CharField(max_length=60)
+    last_name = models.CharField(max_length=60)
+    email = models.EmailField(unique=True)
+    joined_in = models.DateTimeField(auto_now=True)
     phone = PhoneNumberField()
     first_address = models.CharField(max_length=500)
     second_address = models.CharField(max_length=500)
+    is_active = models.BooleanField(default=True)
+    last_modified = models.DateTimeField(auto_now=True)
 
 
 class Customer(models.Model):
-    name = models.CharField(max_length=250)
+    first_name = models.CharField(max_length=250)
+    last_name = models.CharField(max_length=250)
     first_address = models.CharField(max_length=500)
     second_address = models.CharField(max_length=500)
     phone = PhoneNumberField()
     ssd = models.PositiveIntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(Employee, on_delete=models.PROTECT, related_name='created_by')
     last_modified = models.DateTimeField(auto_now=True)
-    modified_by = models.ForeignKey(Employee, on_delete=models.PROTECT, related_name='modified_by')
-    deleted_at = models.DateTimeField(null=True)
-    deleted_by = models.ForeignKey(Employee, on_delete=models.PROTECT, related_name='deleted_by')
-    subscription = models.ManyToManyField(Service)
+    access_speed = models.ForeignKey(Speed, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name + "  " + self.ssd
+        return self.first_name + " " + self.last_name + " :-: " + str(self.ssd)
 
+
+class Subscription(models.Model):
+    customer_id = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    service_id = models.ForeignKey(Service, on_delete=models.PROTECT)
+    status = models.ForeignKey(Status, on_delete=models.PROTECT)
+    joined_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return models.Mo

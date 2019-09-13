@@ -3,3 +3,5 @@ Django>=2.1
 Mysql>=5.7
 Bootstrab4
 django-phonenumber-field
+libmysqlclient-dev
+mysqlclient
