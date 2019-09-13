@@ -49,6 +49,7 @@ class Employee(models.Model):
     email = models.EmailField(unique=True)
     joined_in = models.DateTimeField(auto_now=True)
     phone = PhoneNumberField()
+    ssd = models.PositiveIntegerField()
     first_address = models.CharField(max_length=500)
     second_address = models.CharField(max_length=500)
     is_active = models.BooleanField(default=True)
