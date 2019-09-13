@@ -38,7 +38,7 @@ class Service(models.Model):
     period = models.ForeignKey(Period, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.description
 
 
 class Employee(models.Model):
@@ -67,14 +67,15 @@ class Customer(models.Model):
     access_speed = models.ForeignKey(Speed, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.first_name + " " + self.last_name + " :-: " + str(self.ssd)
+        return self.first_name + " " + self.last_name
 
 
 class Subscription(models.Model):
-    customer_id = models.ForeignKey(Customer, on_delete=models.PROTECT)
-    service_id = models.ForeignKey(Service, on_delete=models.PROTECT)
+    customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    service = models.ForeignKey(Service, on_delete=models.PROTECT)
     status = models.ForeignKey(Status, on_delete=models.PROTECT)
     joined_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return models.Mo
+        return str(self.customer)
+

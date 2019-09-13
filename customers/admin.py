@@ -10,4 +10,13 @@ admin.site.register(Service)
 admin.site.register(Speed)
 admin.site.register(Status)
 admin.site.register(Period)
-admin.site.register(Subscription)
+
+
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('customer', 'status', 'service')
+    search_fields = ['customer__first_name', 'customer__last_name']
+    list_filter = ('status', 'service')
+    list_editable = ['status']
+
+
+admin.site.register(Subscription, SubscriptionAdmin)
