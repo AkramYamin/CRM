@@ -61,11 +61,16 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=250)
     first_address = models.CharField(max_length=500)
     second_address = models.CharField(max_length=500)
-    phone = PhoneNumberField()
-    ssd = models.PositiveIntegerField()
+    phone = PhoneNumberField(unique=True)
+    ssd = models.PositiveIntegerField(unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     access_speed = models.ForeignKey(Speed, on_delete=models.CASCADE)
+    subscriptions = models.ManyToManyField(Service)
+    is_active = models.BooleanField(default=True)
+
+    def _subscriptions(self):
+        return "\n".join([p.name for p in self.subscriptions.all()])
 
     def __str__(self):
         return self.first_name + " " + self.last_name

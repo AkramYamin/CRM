@@ -4,20 +4,23 @@ from .models import Employee, Service, Customer, Status, Speed, Period, Subscrip
 
 # Register your models here.
 
-
+"""
 class EmployeeAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email', 'phone', 'ssd', 'is_active')
     list_editable = ['phone', 'email', 'is_active']
     search_fields = ['first_name', 'last_name', 'email', 'ssd']
+    list_filter = ['is_active']
 
 
 admin.site.register(Employee, EmployeeAdmin)
+"""
 
 
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'ssd', 'access_speed', 'phone')
+    list_display = ('first_name', 'last_name', 'ssd', '_subscriptions', 'access_speed', 'phone', 'is_active')
     search_fields = ('first_name', 'second_name', 'ssd', 'access_speed__speed')
-    list_editable = ['phone']
+    list_editable = ['phone', 'is_active']
+    list_filter = ['access_speed', 'is_active']
 
 
 admin.site.register(Customer, CustomerAdmin)
@@ -27,6 +30,7 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'price', 'period', 'speed', 'is_active')
     search_fields = ('name', 'description')
     list_editable = ('is_active', )
+    list_filter = ['speed', 'period', 'is_active']
 
 
 admin.site.register(Service, ServiceAdmin)
