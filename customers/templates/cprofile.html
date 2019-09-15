@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+        {% load staticfiles %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>CRMSystem</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'assets/css/Fixed-navbar-starting-with-transparency-1.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Fixed-navbar-starting-with-transparency.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
+    <link rel="stylesheet" href="{% static 'assets/css/Login-Animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
+            <div class="container"><a class="navbar-brand" href="">Akram Yamin</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto"></ul><span class="navbar-text actions"> <a href="/customer"
+                                                                                                  class="login">back</a></span></div>
+    </div>
+    </nav>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-8"><form>
+  <div class="form-group row">
+    <label for="first_name" class="col-3 col-form-label">first name</label> 
+    <div class="col-9">
+      <input id="first_name" name="first_name" placeholder="eg: akram" type="text" required="required" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="last_name" class="col-3 col-form-label">last name</label> 
+    <div class="col-9">
+      <input id="last_name" name="last_name" placeholder="eg: yamin" type="text" required="required" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="first_address" class="col-3 col-form-label">first address</label> 
+    <div class="col-9">
+      <input id="first_address" name="first_address" placeholder="customer first address" type="text" required="required" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="second_address" class="col-3 col-form-label">second address</label> 
+    <div class="col-9">
+      <input id="second_address" name="second_address" placeholder="customer second address" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="phone_number" class="col-3 col-form-label">phone</label> 
+    <div class="col-9">
+      <input id="phone_number" name="phone_number" placeholder="cuatomer phone number" type="tel" class="form-control" required="required">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="ssd" class="col-3 col-form-label">SSD</label> 
+    <div class="col-9">
+      <input id="ssd" name="ssd" placeholder="customer ssd" type="number" class="form-control" required="required">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="access_speed" class="col-3 col-form-label">access speed</label> 
+    <div class="col-9">
+      <select id="access_speed" name="access_speed" class="custom-select">
+        <option value="1">1 mbit</option>
+        <option value="2">2 mbit</option>
+        <option value="3">4 mbit</option>
+      </select>
+    </div>
+  </div> 
+  <div class="form-group row">
+    <div class="offset-3 col-9">
+      <button name="submit" type="submit" class="btn btn-primary">save</button>
+    </div>
+  </div>
+</form></div>
+                <div class="col-lg-4"><form>
+  <div class="form-group row">
+    <label class="col-3 col-form-label">srvices</label> 
+    <div class="col-9">
+      <div class="form-check"><input class="form-check-input" type="checkbox" value id="defaultCheck1" /><label class="form-check-label" for="defaultCheck1">
+    First Service
+  </label></div>
+      <div class="form-check"><input class="form-check-input" type="checkbox" value id="defaultCheck2" /><label
+              class="form-check-label" for="defaultCheck1">
+    Second Service
+  </label></div>
+    </div>
+  </div> 
+  <div class="form-group row">
+    <div class="offset-3 col-9">
+      <button name="submit" type="submit" class="btn btn-primary">save</button>
+    </div>
+  </div>
+</form></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'assets/js/bs-animation.js' %}"></script>
+    <script src="{% static 'assets/js/Fixed-navbar-starting-with-transparency.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
+</body>
+
+</html>

@@ -66,7 +66,7 @@ class Customer(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     access_speed = models.ForeignKey(Speed, on_delete=models.CASCADE)
-    subscriptions = models.ManyToManyField(Service)
+    subscriptions = models.ManyToManyField(Service, through='Subscription')
     is_active = models.BooleanField(default=True)
 
     def _subscriptions(self):
@@ -84,4 +84,3 @@ class Subscription(models.Model):
 
     def __str__(self):
         return str(self.customer)
-

@@ -16,7 +16,13 @@ admin.site.register(Employee, EmployeeAdmin)
 """
 
 
+class RoleInline(admin.TabularInline):
+    model = Subscription
+    extra = 1
+
+
 class CustomerAdmin(admin.ModelAdmin):
+    inlines = (RoleInline,)
     list_display = ('first_name', 'last_name', 'ssd', '_subscriptions', 'access_speed', 'phone', 'is_active')
     search_fields = ('first_name', 'second_name', 'ssd', 'access_speed__speed')
     list_editable = ['phone', 'is_active']
