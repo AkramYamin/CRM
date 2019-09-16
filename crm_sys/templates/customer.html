@@ -47,24 +47,34 @@
             </tr>
         </thead>
         <tbody>
+        {% for customer in customers %}
             <tr>
-                <td><a href="cprofile/">Akram Yamin</a></td>
-                <td>+970568550709</td>
-                <td>0987654321</td>
-                <td>8</td>
-                <td>8mbit</td>
+                <td><a href=profile/{{ customer.ssd }}/>
+                    {{ customer.first_name }} {{ customer.last_name }}</a></td>
+                <td>{{ customer.phone }}</td>
+                <td>{{ customer.ssd }}</td>
+                <td>{{ customer.access_speed }}</td>
+                <td>{{ customer.subscriptions }}</td>
                 <td><div class="form-check">
-  <input class="form-check-input" disabled checked type="checkbox" value="" id="defaultCheck1">
+  <input class="form-check-input" disabled
+         {% if customer.is_active == True %}
+            checked
+         {% else %}
+
+         {% endif %}
+         type="checkbox" value="" id="defaultCheck1">
   <label class="form-check-label" for="defaultCheck1">
     active
   </label>
 </div></td>
             </tr>
+        {% endfor %}
             
         </tbody>
     </table></div>
                 <div class="col-md-6 col-lg-3"></div>
-            </div>
+            </div>    <a href="create_customer"><button class="btn primary">new customer</button></a>
+
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
