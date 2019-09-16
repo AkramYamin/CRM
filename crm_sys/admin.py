@@ -23,7 +23,7 @@ class RoleInline(admin.TabularInline):
 
 class CustomerAdmin(admin.ModelAdmin):
     inlines = (RoleInline,)
-    list_display = ('first_name', 'last_name', 'ssd', '_subscriptions', 'access_speed', 'phone', 'is_active')
+    list_display = ('first_name', 'last_name', 'ssd', 'subscriptions_', 'access_speed', 'phone', 'is_active')
     search_fields = ('first_name', 'second_name', 'ssd', 'access_speed__speed')
     list_editable = ['phone', 'is_active']
     list_filter = ['access_speed', 'is_active']

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import CustomerForm
+from .forms import CustomerForm, SubscriptionForm
 from .models import Customer
 
 # Create your views here.
@@ -52,9 +52,34 @@ def customer_profile(request, customer_ssd=0):
                 return render(request, 'profile.html', context)
 
         customer = Customer.objects.get(ssd=customer_ssd)
+        subscriptions_form = SubscriptionForm(request.POST or None)
         context = {
-            'customer': customer
+            'customer': customer,
+            'subscriptions_form': subscriptions_form
         }
         form = CustomerForm(instance=customer)
         context['form'] = form
     return render(request, 'profile.html', context)
+
+
+def search(request):
+    content = request.GET.__getitem__('search')
+    url = '/customer/search/' + content + '/'
+    return redirect(url)
+
+
+def search_customer(request, content):
+    try:
+        ssd = int(content)
+        customers = Customer.objects.filter(ssd__in=[content],
+                                            )
+    except ValueError:
+        customers = Customer.objects.filter(first_name__icontains=content,
+                                            )
+        customers |= Customer.objects.filter(last_name__icontains=content,
+                                            )
+    print(customers)
+    context = {
+        'customers': customers
+    }
+    return render(request, 'customer.html', context)

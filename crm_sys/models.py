@@ -69,8 +69,12 @@ class Customer(models.Model):
     subscriptions = models.ManyToManyField(Service, through='Subscription')
     is_active = models.BooleanField(default=True)
 
-    def _subscriptions(self):
-        return "\n".join([p.name for p in self.subscriptions.all()])
+    def subscriptions_(self):
+        text = "\n".join([p.name for p in self.subscriptions.all()])
+        if text == "":
+            text = "not subscriptions"
+        return text
+
 
     def __str__(self):
         return self.first_name + " " + self.last_name
