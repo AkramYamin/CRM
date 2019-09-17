@@ -41,21 +41,6 @@ class Service(models.Model):
         return self.description
 
 
-class Employee(models.Model):
-    username = models.CharField(max_length=250)
-    password = models.CharField(max_length=500)
-    first_name = models.CharField(max_length=60)
-    last_name = models.CharField(max_length=60)
-    email = models.EmailField(unique=True)
-    joined_in = models.DateTimeField(auto_now=True)
-    phone = PhoneNumberField()
-    ssd = models.PositiveIntegerField()
-    first_address = models.CharField(max_length=500)
-    second_address = models.CharField(max_length=500)
-    is_active = models.BooleanField(default=True)
-    last_modified = models.DateTimeField(auto_now=True)
-
-
 class Customer(models.Model):
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)

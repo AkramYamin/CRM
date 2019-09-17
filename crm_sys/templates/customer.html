@@ -31,7 +31,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-9 offset-lg-0"><nav class="navbar navbar-light bg-light">
-  <form class="form-inline" action="search" method="get">
+  <form class="form-inline" action="/customer/search/" method="get">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search"
            id="search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -51,7 +51,7 @@
         <tbody>
         {% for customer in customers %}
             <tr>
-                <td><a href=profile/{{ customer.ssd }}/>
+                <td><a href=/customer/profile/{{ customer.ssd }}/>
                     {{ customer.first_name }} {{ customer.last_name }}</a></td>
                 <td>{{ customer.phone }}</td>
                 <td>{{ customer.ssd }}</td>

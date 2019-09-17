@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employee, Service, Customer, Status, Speed, Period, Subscription
+from .models import Service, Customer, Status, Speed, Period, Subscription
 
 
 # Register your models here.
