@@ -18,12 +18,17 @@
 <body>
     <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" data-aos-once="true" class="login-card" style="font-family:Roboto, sans-serif;">
         <p class="profile-name-card"> <i class="fa fa-unlock-alt d-inline" style="width:0;height:0;font-size:56px;color:rgb(104,145,162);"></i></p>
-        <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+        <form class="form-signin" method="post" action="/login/">
+            {% csrf_token %}
+            <span class="reauth-email" style="margin:11px;">
+            </span>
+            <input class="form-control" type="email" required="" placeholder="Email address" autofocus=""
+                id="email" name="email">
+            <input class="form-control" type="password" required="" placeholder="Password"
+                id="pass" name="pass">
+            <button type="submit" class="btn btn-primary btn-block btn-lg btn-signin"
+                                      style="font-family:Roboto, sans-serif;font-size:16px;font-weight:normal;font-style:normal;">Sign in</button>
+        </form>
         <p class="text-center"
             style="color:rgb(73,80,87);font-size:11px;">Restricted Area</p>
     </div>

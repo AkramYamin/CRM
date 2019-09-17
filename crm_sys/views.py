@@ -1,19 +1,14 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .forms import CustomerForm ,SubscriptionForm
+from .forms import CustomerForm
 from .models import Customer, Subscription
+from django.http import HttpResponse
 
 # Create your views here.
 
 
-def login(request):
-    if request.POST:
-        return redirect("customer/")
-    else:
-        return render(request, 'login.html', {})
-
-
 def create_customer(request):
+    if not request.user.is_authenticated:
+        redirect("/login/")
     if request.method == "POST":
         form = CustomerForm(request.POST or None)
         if form.is_valid():
@@ -35,6 +30,8 @@ def create_customer(request):
 
 
 def customer_portal(request):
+    if not request.user.is_authenticated:
+        return redirect("/login/")
     customers = Customer.objects.all()
     context = {
         'customers': customers
@@ -43,6 +40,8 @@ def customer_portal(request):
 
 
 def customer_profile(request, customer_ssd=0):
+    if not request.user.is_authenticated:
+        return redirect("/login/")
     if customer_ssd == 0:
         return redirect('/customer/')
     else:
@@ -74,12 +73,16 @@ def customer_profile(request, customer_ssd=0):
 
 
 def search(request):
+    if not request.user.is_authenticated:
+        return redirect("/login/")
     content = request.GET.__getitem__('search')
     url = '/customer/search/' + content + '/'
     return redirect(url)
 
 
 def search_customer(request, content):
+    if not request.user.is_authenticated:
+        return redirect("/login/")
     try:
         ssd = int(content)
         customers = Customer.objects.filter(ssd__in=[content],
