@@ -75,7 +75,6 @@ class Customer(models.Model):
             text = "not subscriptions"
         return text
 
-
     def __str__(self):
         return self.first_name + " " + self.last_name
 
@@ -83,7 +82,7 @@ class Customer(models.Model):
 class Subscription(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
     service = models.ForeignKey(Service, on_delete=models.PROTECT)
-    status = models.ForeignKey(Status, on_delete=models.PROTECT)
+    status = models.ForeignKey(Status, on_delete=models.PROTECT, default=1)
     joined_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):

@@ -1,20 +1,14 @@
 from django import forms
-from .models import Customer, Service
+from .models import Customer, Subscription
 
 
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        exclude = ('subscriptions',)
+        fields = "__all__"
 
 
-class SubscriptionForm (forms.ModelForm):
+class SubscriptionForm(forms.ModelForm):
     class Meta:
-        model = Customer
-        fields = ("subscriptions", )
-
-    def __init__ (self, *args, **kwargs):
-        super(SubscriptionForm, self).__init__(*args, **kwargs)
-        self.fields["subscriptions"].widget = forms.widgets.CheckboxSelectMultiple()
-        self.fields["subscriptions"].help_text = ""
-        self.fields["subscriptions"].queryset = Customer.objects.all()
+        model = Subscription
+        fields = "__all__"
