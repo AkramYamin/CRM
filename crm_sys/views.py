@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from .forms import CustomerForm
 from .models import Customer, Subscription
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
+@login_required
 def create_customer(request):
     if not request.user.is_authenticated:
         redirect("/login/")
@@ -29,6 +30,7 @@ def create_customer(request):
         return render(request, 'create_customer.html', {'form': create_customer_form})
 
 
+@login_required
 def customer_portal(request):
     if not request.user.is_authenticated:
         return redirect("/login/")
@@ -39,6 +41,7 @@ def customer_portal(request):
     return render(request, 'customer.html', context)
 
 
+@login_required
 def customer_profile(request, customer_ssd=0):
     if not request.user.is_authenticated:
         return redirect("/login/")
@@ -72,6 +75,7 @@ def customer_profile(request, customer_ssd=0):
     return render(request, 'profile.html', context)
 
 
+@login_required
 def search(request):
     if not request.user.is_authenticated:
         return redirect("/login/")
@@ -80,6 +84,7 @@ def search(request):
     return redirect(url)
 
 
+@login_required
 def search_customer(request, content):
     if not request.user.is_authenticated:
         return redirect("/login/")
